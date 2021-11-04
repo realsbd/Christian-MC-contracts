@@ -1,0 +1,304 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "rate_",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address payable",
+						"name": "wallet_",
+						"type": "address"
+					},
+					{
+						"internalType": "contract ERC20Burnable",
+						"name": "token_",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					}
+				],
+				"name": "TokenChanged",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "purchaser",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "beneficiary",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "TokensPurchased",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "beneficiary",
+						"type": "address"
+					}
+				],
+				"name": "buyTokens",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rate",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "token",
+				"outputs": [
+					{
+						"internalType": "contract ERC20Burnable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "wallet",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "weiRaised",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"details": "Crowdsale is a base contract for managing a token crowdsale, allowing investors to purchase tokens with ether. This contract implements such functionality in its most fundamental form and can be extended to provide additional functionality and/or custom behavior. The external interface represents the basic interface for purchasing tokens, and conforms the base architecture for crowdsales. It is *not* intended to be modified / overridden. The internal interface conforms the extensible and modifiable surface of crowdsales. Override the methods to add functionality. Consider using 'super' where appropriate to concatenate behavior.",
+			"events": {
+				"TokenChanged(address)": {
+					"params": {
+						"token": "new token address"
+					}
+				},
+				"TokensPurchased(address,address,uint256,uint256)": {
+					"params": {
+						"amount": "amount of tokens purchased",
+						"beneficiary": "who got the tokens",
+						"purchaser": "who paid for the tokens",
+						"value": "weis paid for purchase"
+					}
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"buyTokens(address)": {
+					"details": "low level token purchase ***DO NOT OVERRIDE*** This function has a non-reentrancy guard, so it shouldn't be called by another `nonReentrant` function.",
+					"params": {
+						"beneficiary": "Recipient of the token purchase"
+					}
+				},
+				"constructor": {
+					"details": "The rate is the conversion between wei and the smallest and indivisible token unit. So, if you are using a rate of 1 with a ERC20Detailed token with 3 decimals called TOK, 1 wei will give you 1 unit, or 0.001 TOK.",
+					"params": {
+						"rate_": "Number of token units a buyer gets per wei",
+						"token_": "Address of the token being sold",
+						"wallet_": "Address where collected funds will be forwarded to"
+					}
+				},
+				"rate()": {
+					"returns": {
+						"_0": "the number of token units a buyer gets per wei."
+					}
+				},
+				"token()": {
+					"returns": {
+						"_0": "the token being sold."
+					}
+				},
+				"wallet()": {
+					"returns": {
+						"_0": "the address where funds are collected."
+					}
+				},
+				"weiRaised()": {
+					"returns": {
+						"_0": "the amount of wei raised."
+					}
+				}
+			},
+			"title": "Crowdsale",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"TokenChanged(address)": {
+					"notice": "Event for token changes logging"
+				},
+				"TokensPurchased(address,address,uint256,uint256)": {
+					"notice": "Event for token purchase logging"
+				}
+			},
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Crowdsale.sol": "Crowdsale"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Address.sol": {
+			"keccak256": "0x4a7d161516c0cd5a840a1747826339ec885ad1ec6c884015af8ac77f6572f4ba",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ca5afe992f738efc2cf82767a0451b22d0247b7f2ac34e3dee02baa7118703f9",
+				"dweb:/ipfs/QmayXvkYfNsHVtrYMjTVBox5g9r9U4W4Tx9W2q7cLxw5Ay"
+			]
+		},
+		"contracts/Context.sol": {
+			"keccak256": "0xe6b0fd58ddc810aa58acc8e1ca5f29469775c74adb950df6afaa9e573a9162cf",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ad8a44a17672844f734a8c2517f8cbd1fb581d1326ad7a04f7589d662e5874aa",
+				"dweb:/ipfs/QmWG7CcrstgsPnKtna5ESirh2wExGWNRDkF8zvz5My4gVo"
+			]
+		},
+		"contracts/Crowdsale.sol": {
+			"keccak256": "0x54933631cfe7ba050d4a0d791d20b692f36ec8d8509400cae2fa79974cc6927d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a51e240f3f20fba76a5325afe3af3d26990ec61a92a2c40fcf9824aafd376016",
+				"dweb:/ipfs/QmUYreuCCbWqMsMuvvQQystcTH9FKsPcRMHBZ9zX5FbVZ8"
+			]
+		},
+		"contracts/ERC20.sol": {
+			"keccak256": "0xd5a968fc346a8da74e5e45f6e8885a197de2739b015fde6a9c2b63f9e5ad9521",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a84d95c767569c843009474860f36e3c4dd26f2b17f605920963d5960a17e9d9",
+				"dweb:/ipfs/QmW3DZY4PQrRkEsiScbwng7zb1jqQDZatUedQsBYT79dv6"
+			]
+		},
+		"contracts/ERC20Burnable.sol": {
+			"keccak256": "0x1224774b2ef007cd4af977aef7a94d4b5276ba71169f0aaed5c0ce38a6eda1a5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a4f185ca6e7e6d66c401a4e3b14e71084147b3be076acabbf8ceeee74bca0685",
+				"dweb:/ipfs/QmT3AX12Q3WmGUDZQDesy9mMkpe4BU5iB7XKFyacvUj1UV"
+			]
+		},
+		"contracts/IERC20.sol": {
+			"keccak256": "0x4148ffa71d6f44cd5ac04ae7914a1c1ba9fe13129a279eab66cadc0489f4d728",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://795d23086de655d6097b846604819364aadf284f993cbb0c96092be1b45be88c",
+				"dweb:/ipfs/QmdXoTdgJeB6wXcNXq5QwEua5VEMvqQSDtLwAZY9e5r9dz"
+			]
+		},
+		"contracts/IERC20Metadata.sol": {
+			"keccak256": "0x3c65a32afb82ce4a8ed68d5cc11a6aca4c2a3194451fa81dc3b1d24ae973c819",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9f7b76d3033d7a89aadb4d05259151a9e9e90b17b0187145817e5e942699b424",
+				"dweb:/ipfs/Qmdg4W7i1aNHcaXa1t7exM4NWN4P13mnW3DqNfW5xtLXKT"
+			]
+		},
+		"contracts/ReentrancyGuard.sol": {
+			"keccak256": "0xd7947ef4a04abfbd9b4b3acd43135d7cb16bc775fc27d1da2c1e1986ccc80ce7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://678032256f85ddd87937b15b2acf7ba676ad0da7bf07df037bdce5b89e91ee0c",
+				"dweb:/ipfs/Qmc9wSe6B9cZPLF1AT1sUAribuBGFotYwKfUgwvj4R72ef"
+			]
+		},
+		"contracts/SafeERC20.sol": {
+			"keccak256": "0x2b5a59a8337e33f92530de4b4386fab153f62e905f568b8bf7837ce3107e8137",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7110da94543fb0e72420edbf514645fda176bc2b79a7cc84d113c83d92a90117",
+				"dweb:/ipfs/QmSg2FwxRDmHxQ7jJ8nBYvjtgmGEmWGydRHYKYTtwMC1Vi"
+			]
+		}
+	},
+	"version": 1
+}
