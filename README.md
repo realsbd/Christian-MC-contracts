@@ -1,0 +1,1 @@
+# Christian Millionnaire Coin is an Etherium based token, which focus on giving back to the community and helping the needy, through commissions earn from every transactions by the token holder on Smart contract network.
